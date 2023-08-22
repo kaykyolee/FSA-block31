@@ -5,11 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Document</title>
+    <title>Pet List</title>
 </head>
 <body>
     <h1>Pet Finder</h1>
-    
-    <script src="script.js"></script>
+    <ul></ul>
+    <script >
+        //get the ul element 
+        const ul=document.querySelector('ul');
+
+        //get array of pets from localhost:8080/api/v1/pets
+        fetch ('http://localhost:8080/api/v1/pets')
+        .then(response=>response.json())
+        .then(pets=>{
+            //loop through array of pets
+            pets.forEach(pet=>{
+            //create a new li element
+            const li=document.createElement('li');
+            //set the text of the li element to pets's name
+            li.textContent=pet.name;
+            //append the li element to the ul element 
+            ul.appendChild(li);
+        })
+        })
+    </script>
 </body>
 </html>
